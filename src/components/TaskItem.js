@@ -3,7 +3,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const TaskItem = ({ task, onDelete, onEdit }) => {
-  console.log(task)
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
@@ -17,10 +16,10 @@ const TaskItem = ({ task, onDelete, onEdit }) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => onEdit(task)} style={styles.editButton}>
-          <Text style={styles.buttonText}>Редактировать</Text>
+          <Text style={styles.buttonText}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => onDelete(task.id)} style={styles.deleteButton}>
-          <Text style={styles.buttonText}>Удалить</Text>
+          <Text style={styles.buttonText}>Delete</Text>
         </TouchableOpacity>
       </View>
     </View>

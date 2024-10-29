@@ -17,10 +17,10 @@ const TaskEditScreen = ({ route, navigation }) => {
   const task = route.params?.task; 
   const [title, setTitle] = useState(task ? task.title : ''); 
   const [description, setDescription] = useState(task ? task.description : ''); 
-  const [status, setStatus] = useState(task ? task.status : 'Выберите статус'); 
+  const [status, setStatus] = useState(task ? task.status : 'Select status'); 
   const [isOpen, setIsOpen] = useState(false);
 
-  const items = ['В работе', 'В ожидании', 'Готово'];
+  const items = ['In progress', 'Pending', 'Ready'];
 
   const handleSelectItem = (item) => {
     setStatus(item);
@@ -51,7 +51,8 @@ const TaskEditScreen = ({ route, navigation }) => {
       <View style={styles.innerContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Название задачи"
+          placeholder="Task name"
+          placeholderTextColor="#fff"
           value={title}
           onChangeText={setTitle}
           autoFocus 
@@ -59,7 +60,8 @@ const TaskEditScreen = ({ route, navigation }) => {
         <TextInput
           multiline={true}
           style={styles.inputDescription}
-          placeholder="Описание"
+          placeholder="Description"
+          placeholderTextColor="#fff"
           value={description}
           onChangeText={setDescription}
         />
@@ -82,9 +84,12 @@ const TaskEditScreen = ({ route, navigation }) => {
           )}
         </View>
       </View>
-      <View style={styles.addButtonContainer}>
-        <Button title="Сохранить" onPress={handleSave} />
-      </View>
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={handleSave}
+      >
+        <Text style={styles.buttonText}>Save</Text>
+      </TouchableOpacity>
     </SafeAreaView>
     </TouchableWithoutFeedback>
   );
@@ -93,7 +98,7 @@ const TaskEditScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#d48a3f',
   },
   back: {
     position: 'absolute',
@@ -128,35 +133,59 @@ const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
     position: 'relative', 
+    backgroundColor: '#8f5106',
   },
   header: {
     padding: 16,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#8f5106',
     borderRadius: 4,
   },
   headerText: {
     fontSize: 18, 
+    color: '#fff',
   },
   dropdown: {
     position: 'absolute', 
-    backgroundColor: '#ffffff',
+    backgroundColor: '#8f5106',
     borderRadius: 4,
     borderWidth: 1,
     borderColor: '#ddd',
     marginTop: 8,
     width: '100%',
     zIndex: 2, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.3, 
+    shadowRadius: 4, 
+    elevation: 5, 
   },
   item: {
     padding: 12,
+    backgroundColor: '#8f5106',
   },
   itemText: {
-    fontSize: 16, 
+    fontSize: 18, 
+    color: '#fff'
   },
-  addButtonContainer: {
-    marginTop: 20, 
-    marginBottom: 20, 
-    width: '100%', 
+  button: {
+    marginLeft: 15,
+    marginRight: 15,
+    backgroundColor: '#8f5106', 
+    paddingVertical: 15, 
+    paddingHorizontal: 30,
+    borderRadius: 25, 
+    marginTop: 'auto', 
+    marginBottom: 20,
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.3, 
+    shadowRadius: 4, 
+    elevation: 5, 
+  },
+  buttonText: {
+    color: '#fff', 
+    fontSize: 18, 
+    textAlign: 'center', 
   },
 });
 

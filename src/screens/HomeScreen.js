@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+import bg from '../../assets/images/bg.jpg'
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Task Manager</Text>
+    <ImageBackground source={bg} style={styles.background}>
+      <View style={styles.container}>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.title}>Task Manager</Text>
+        </View>
       <TouchableOpacity 
         style={styles.button}
         onPress={() => navigation.navigate("EditTask")}
@@ -14,25 +18,38 @@ const HomeScreen = () => {
         <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 };
 
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
-    justifyContent: 'space-around', 
+    justifyContent: 'center', 
     alignItems: 'center',
-    backgroundColor: '#DCD6F7',
+    // backgroundColor: '#6c7fe6',
+  },
+  titleWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 36,
+    fontSize: 40,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#080808',
   },
   button: {
-    backgroundColor: '#6EBCF7', 
+    marginTop: 'auto', 
+    marginBottom: 20,
+    backgroundColor: '#785902', 
     paddingVertical: 15, 
     paddingHorizontal: 30,
     borderRadius: 25, 
