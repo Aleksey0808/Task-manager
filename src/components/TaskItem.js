@@ -6,7 +6,15 @@ const TaskItem = ({ task, onDelete, onEdit }) => {
   console.log(task)
   return (
     <View style={styles.container}>
-      <Text style={styles.taskText}>{task.title}</Text>
+      <View style={styles.wrapper}>
+         <Text 
+      numberOfLines={1}
+      ellipsizeMode="tail"
+      style={styles.taskText}
+      >
+        {task.title}
+        </Text>
+      </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => onEdit(task)} style={styles.editButton}>
           <Text style={styles.buttonText}>Редактировать</Text>
@@ -28,7 +36,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
+  wrapper: {
+    marginBottom: 10,
+  },
   taskText: {
+    // width: 150,
     fontSize: 18,
   },
   statusText: {

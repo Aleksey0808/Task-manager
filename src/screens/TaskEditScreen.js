@@ -16,6 +16,7 @@ const TaskEditScreen = ({ route, navigation }) => {
   const { addTask, updateTask } = useContext(TaskContext);
   const task = route.params?.task; 
   const [title, setTitle] = useState(task ? task.title : ''); 
+  const [description, setDescription] = useState(task ? task.description : ''); 
   const [status, setStatus] = useState(task ? task.status : 'Выберите статус'); 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,7 +31,7 @@ const TaskEditScreen = ({ route, navigation }) => {
     if (task && task.id) {
       updateTask(task.id, title, description, status); 
     } else {
-      addTask(title, status); 
+      addTask(title, description, status); 
     }
     navigation.navigate("Tasks")
   };
@@ -54,6 +55,13 @@ const TaskEditScreen = ({ route, navigation }) => {
           value={title}
           onChangeText={setTitle}
           autoFocus 
+        />
+        <TextInput
+          multiline={true}
+          style={styles.inputDescription}
+          placeholder="Описание"
+          value={description}
+          onChangeText={setDescription}
         />
         <View style={styles.wrapper}>
           <TouchableOpacity style={styles.header} onPress={() => setIsOpen(!isOpen)}>
@@ -101,6 +109,16 @@ const styles = StyleSheet.create({
   },
   input: { 
     width: '100%',
+    padding: 16, 
+    borderBottomWidth: 1, 
+    borderColor: '#ddd',
+    fontSize: 18, 
+    marginBottom: 16,
+  },
+  inputDescription: { 
+    height: 120,
+    width: '100%',
+    textAlignVertical: 'top',
     padding: 16, 
     borderBottomWidth: 1, 
     borderColor: '#ddd',

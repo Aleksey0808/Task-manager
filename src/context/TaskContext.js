@@ -30,16 +30,16 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
-  const addTask = (title, status) => {
+  const addTask = (title, description, status) => {
     const newTask = { id: nanoid(), title, description, status };
     const updatedTasks = [...tasks, newTask];
     setTasks(updatedTasks);
     saveTasks(updatedTasks);
   };
 
-  const updateTask = (id, title, status) => {
+  const updateTask = (id, title, description, status) => {
     const updatedTasks = tasks.map(task =>
-      task.id === id ? { ...task, title, status } : task
+      task.id === id ? { ...task, title, description, status } : task
     );
     setTasks(updatedTasks);
     saveTasks(updatedTasks);

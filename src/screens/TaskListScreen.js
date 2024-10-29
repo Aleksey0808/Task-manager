@@ -49,9 +49,12 @@ const TaskListScreen = () => {
         />
       </View>
       <TaskList status={selectedStatus} />
-      <View style={styles.addButtonContainer}>
-        <Button title="Добавить задачу" onPress={() => navigation.navigate('EditTask')} />
-      </View>
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={() => navigation.navigate('EditTask')}
+      >
+        <Text style={styles.buttonText}>Добавить задачу</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -88,6 +91,21 @@ const styles = StyleSheet.create({
   addButtonContainer: {
     marginTop: 'auto', 
     marginBottom: 20, 
+  },
+  button: {
+    marginLeft: 15,
+    marginRight: 15,
+    backgroundColor: '#6EBCF7', 
+    paddingVertical: 15, 
+    paddingHorizontal: 30,
+    borderRadius: 25, 
+    marginTop: 'auto', 
+    marginBottom: 20,
+  },
+  buttonText: {
+    color: '#fff', 
+    fontSize: 18, 
+    textAlign: 'center', 
   },
 });
 

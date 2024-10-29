@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around', 
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#DCD6F7',
   },
   title: {
     fontSize: 36,

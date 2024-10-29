@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   },
   list: {
     padding: 16,
+    gap: 6,
   },
   notFoundView: {
     flex: 1,
