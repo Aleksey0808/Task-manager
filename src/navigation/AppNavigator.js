@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TaskListScreen from '../screens/TaskListScreen';
 import TaskEditScreen from '../screens/TaskEditScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -10,6 +11,7 @@ const Tab = createBottomTabNavigator();
 const MainTabs = () => {
   return (
     <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Tasks" component={TaskListScreen} />
     </Tab.Navigator>
   );

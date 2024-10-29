@@ -6,6 +6,7 @@ const TaskItem = ({ task, onDelete, onEdit }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.taskText}>{task.title}</Text>
+        <Text style={styles.statusText}>{task.status}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => onEdit(task)} style={styles.editButton}>
           <Text style={styles.buttonText}>Edit</Text>
@@ -29,6 +30,14 @@ const styles = StyleSheet.create({
   },
   taskText: {
     fontSize: 18,
+  },
+  statusWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  statusText: {
+    fontSize: 14,
+    color: 'red',
   },
   buttonContainer: {
     flexDirection: 'row',
