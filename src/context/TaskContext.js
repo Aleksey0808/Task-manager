@@ -31,7 +31,7 @@ export const TaskProvider = ({ children }) => {
   };
 
   const addTask = (title, status) => {
-    const newTask = { id: nanoid(), title, status };
+    const newTask = { id: nanoid(), title, description, status };
     const updatedTasks = [...tasks, newTask];
     setTasks(updatedTasks);
     saveTasks(updatedTasks);

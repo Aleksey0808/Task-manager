@@ -1,43 +1,94 @@
-import React, { useContext } from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, FlatList, Button, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { TaskContext } from '../context/TaskContext';
 import { useNavigation } from '@react-navigation/native';
-import TaskItem from '../components/TaskItem';
+import { TaskList } from '../components/TaskList';
 
 const TaskListScreen = () => {
-  const { tasks, deleteTask } = useContext(TaskContext);
+  const { tasks } = useContext(TaskContext);
   const navigation = useNavigation();
-  // console.log('tasks', tasks)
 
-  const handleEditTask = (task) => {
-    // console.log('task', task)
-    navigation.navigate('EditTask', { task });
+  const [selectedId, setSelectedId] = useState(0);
+  const [selectedStatus, setSelectedStatus] = useState("В работе");
+
+  const onCategoriesBtnClick = (status, index) => {
+    setSelectedStatus(status);
+    setSelectedId(index);
   };
 
-  const handleDeleteTask = (taskId) => {
-    deleteTask(taskId);
-  };
+  const categories = ["В работе", "В ожидании", "Готово"];
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={tasks}
-        keyExtractor={(item) => item.id.toString()} 
-        renderItem={({ item }) => (
-          <TaskItem
-            task={item}
-            onDelete={handleDeleteTask} 
-            onEdit={handleEditTask} 
-          />
-        )}
-      />
-      <Button title="Добавить задачу" onPress={() => handleEditTask()} />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <FlatList
+          contentContainerStyle={{ justifyContent: "center", width: "100%" }}
+          horizontal
+          data={categories}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity 
+              style={[
+                styles.categoryButton,
+                selectedId === index && styles.activeCategoryButton
+              ]}
+              activeOpacity={0.8}
+              onPress={() => onCategoriesBtnClick(item, index)}
+            >
+              <Text 
+                style={[
+                  styles.categoryButtonText,
+                  selectedId === index && styles.activeCategoryButtonText
+                ]}
+              >
+                {item}
+              </Text>
+            </TouchableOpacity>
+          )}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+      <TaskList status={selectedStatus} />
+      <View style={styles.addButtonContainer}>
+        <Button title="Добавить задачу" onPress={() => navigation.navigate('EditTask')} />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: '#f8f9fa' },
+  container: { 
+    flex: 1, 
+    padding: 16, 
+    backgroundColor: '#f8f9fa' 
+  },
+  buttonContainer: {
+    marginBottom: 10,
+    backgroundColor: '#f8f9fa' 
+  },
+  categoryButton: {
+    padding: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderColor: 'grey',
+  },
+  categoryButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    textAlign: 'center',
+    color: 'grey',
+  },
+  activeCategoryButton: {
+    borderColor: '#000', 
+  },
+  activeCategoryButtonText: {
+    color: '#000',  
+  },
+  addButtonContainer: {
+    marginTop: 'auto', 
+    marginBottom: 20, 
+  },
 });
 
 export default TaskListScreen;

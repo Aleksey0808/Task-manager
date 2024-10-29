@@ -1,17 +1,18 @@
-// TaskItem.js
+
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const TaskItem = ({ task, onDelete, onEdit }) => {
+  console.log(task)
   return (
     <View style={styles.container}>
       <Text style={styles.taskText}>{task.title}</Text>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => onEdit(task)} style={styles.editButton}>
-          <Text style={styles.buttonText}>Edit</Text>
+          <Text style={styles.buttonText}>Редактировать</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => onDelete(task.id)} style={styles.deleteButton}>
-          <Text style={styles.buttonText}>Delete</Text>
+          <Text style={styles.buttonText}>Удалить</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -29,6 +30,10 @@ const styles = StyleSheet.create({
   },
   taskText: {
     fontSize: 18,
+  },
+  statusText: {
+    fontSize: 14,
+    color: 'red',
   },
   buttonContainer: {
     flexDirection: 'row',
