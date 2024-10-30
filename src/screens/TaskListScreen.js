@@ -22,7 +22,7 @@ const TaskListScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.buttonContainer}>
         <FlatList
-          contentContainerStyle={{ paddingHorizontal: 10, gap: 45, width: "100%" }}
+          contentContainerStyle={{ justifyContent: 'space-between', paddingTop: 10, paddingHorizontal: 10, width: "100%" }}
           horizontal
           data={categories}
           keyExtractor={(item, index) => index.toString()}
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   categoryButtonText: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',
     color: '#fff',
@@ -87,7 +87,9 @@ const styles = StyleSheet.create({
     borderColor: '#000', 
   },
   activeCategoryButtonText: {
+    flex: 1,
     color: '#000',  
+    width: 100,
   },
   addButtonContainer: {
     marginTop: 'auto', 
