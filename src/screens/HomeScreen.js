@@ -9,7 +9,7 @@ const HomeScreen = () => {
     <ImageBackground source={bg} style={styles.background}>
       <View style={styles.container}>
         <View style={styles.titleWrapper}>
-          <Text style={styles.title}>Task Manager</Text>
+          <Text style={styles.title}>Track Task Flow</Text>
         </View>
       <TouchableOpacity 
         style={styles.button}
