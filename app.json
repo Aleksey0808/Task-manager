@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Track Task Flow",
-    "slug": "Task-manager",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "slug": "tracktaskflow",
+    "version": "1.0.2",
+    "orientation": "default",
     "icon": "./assets/images/Logo.png",
-    "scheme": "myapp",
+    "scheme": "tracktaskflow",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/bg.png",
@@ -13,14 +13,38 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSAdvertisingAttributionReportEndpoint": "https://appsflyer-skadnetwork.com/",
+        "SKAdNetworkItems": [
+          {
+            "SKAdNetworkIdentifier": "v9wttpbfk9.skadnetwork"
+          },
+          {
+            "SKAdNetworkIdentifier": "n38lu8286q.skadnetwork"
+          },
+          {
+            "SKAdNetworkIdentifier": "cstr6suwn9.skadnetwork"
+          },
+          {
+            "SKAdNetworkIdentifier": "eqhxz8m8av.skadnetwork"
+          }
+        ]
+      },
+      "bundleIdentifier": "com.tracktaskflow",
+      "associatedDomains": [
+        "applinks:tracktaskflow.onelink.me"
+      ]
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/Logo.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.aleksey0808.Taskmanager"
+      "permissions": [
+        "com.google.android.gms.permission.AD_ID"
+      ],
+      "package": "com.tracktaskflow"
     },
     "web": {
       "bundler": "metro",
@@ -28,15 +52,55 @@
       "favicon": "./assets/images/Logo.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "react-native-appsflyer",
+        {
+          "shouldUseStrictMode": false
+        }
+      ],
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "production"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static",
+            "deploymentTarget": "15.1"
+          }
+        }
+      ],
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "DEFAULT"
+        }
+      ],
+      [
+        "expo-tracking-transparency",
+        {
+          "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+        }
+      ]
     ],
-    "experiments": {
-      "typedRoutes": true
+    "runtimeVersion": "1.0.2",
+    "updates": {
+      "requestHeaders": {
+        "expo-channel-name": "tracktaskflow"
+      },
+      "url": "https://u.expo.dev/d704a94a-b58c-4685-aea2-28663368b14f"
     },
     "extra": {
       "eas": {
-        "projectId": "2ad5f36c-7f26-4d5a-a4eb-a974b4bfe8a5"
+        "projectId": "d704a94a-b58c-4685-aea2-28663368b14f"
       }
+    },
+    "experiments": {
+      "typedRoutes": true
     }
   }
 }
