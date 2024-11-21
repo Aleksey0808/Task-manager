@@ -4,43 +4,40 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
-      android_signing:
-        - keystore: |
-            -----BEGIN PRIVATE KEY-----
-            <Your Keystore Content Here>
-            -----END PRIVATE KEY-----
-          keystore_password: "7c7cf268c32ede4537c59d2fc917ee81"
-          key_alias: "c21392d6328c6da995fe4290c2963271"
-          key_password: "b2323be4dae2b295d4af98e64104ebb3"
       vars:
-        PACKAGE_NAME: "com.aleksey0808.Taskmanager"  
-    scripts:
-      - name: Set Android SDK location
-        script: | 
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
-      - name: Install npm dependencies
-        script: | 
-          npm install
-      - name: Run Expo Prebuild
-        script: | 
-          npx expo prebuild --platform android
-      - name: Set up app/build.gradle
-        script: | 
-          mv ./support-files/build.gradle android/app
-      - name: Build Android release
-        script: | 
-          LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
-          if [ -z $LATEST_GOOGLE_PLAY_BUILD_NUMBER ]; then
-              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
-          else
-              UPDATED_BUILD_NUMBER=$(($LATEST_GOOGLE_PLAY_BUILD_NUMBER + 1))
-          fi
-          cd android
-          ./gradlew bundleRelease -PversionCode=$UPDATED_BUILD_NUMBER -PversionName=1.0.$UPDATED_BUILD_NUMBER
-      - name: Build APK
-        script: | 
-          cd android
-          ./gradlew assembleRelease
+        PACKAGE_NAME: "com.aleksey0808.Taskmanager"
+        KEYSTORE_PASSWORD: "7c7cf268c32ede4537c59d2fc917ee81"
+        KEY_ALIAS: "c21392d6328c6da995fe4290c2963271"
+        KEY_PASSWORD: "b2323be4dae2b295d4af98e64104ebb3"
+      android_signing:
+        keystore: "/@aleksey0808__Task-manager-keystore.bak.jks" 
+      scripts:
+        - name: Set Android SDK location
+          script: |
+            echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/android/local.properties"
+        - name: Install npm dependencies
+          script: |
+            npm install
+        - name: Run Expo Prebuild
+          script: |
+            npx expo prebuild --platform android
+        - name: Set up app/build.gradle
+          script: |
+            mv ./support-files/build.gradle android/app
+        - name: Build Android release
+          script: |
+            LATEST_GOOGLE_PLAY_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
+            if [ -z $LATEST_GOOGLE_PLAY_BUILD_NUMBER ]; then
+                UPDATED_BUILD_NUMBER=$BUILD_NUMBER
+            else
+                UPDATED_BUILD_NUMBER=$(($LATEST_GOOGLE_PLAY_BUILD_NUMBER + 1))
+            fi
+            cd android
+            ./gradlew bundleRelease -PversionCode=$UPDATED_BUILD_NUMBER -PversionName=1.0.$UPDATED_BUILD_NUMBER
+        - name: Build APK
+          script: |
+            cd android
+            ./gradlew assembleRelease
     artifacts:
       - android/app/build/outputs/**/*.aab
       - android/app/build/outputs/**/*.apk
