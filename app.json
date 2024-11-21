@@ -5,7 +5,7 @@
     "version": "1.0.2",
     "orientation": "default",
     "icon": "./assets/images/Logo.png",
-    "scheme": "tracktaskflow",
+    "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/bg.png",
@@ -44,7 +44,7 @@
       "permissions": [
         "com.google.android.gms.permission.AD_ID"
       ],
-      "package": "com.tracktaskflow"
+      "package": "com.aleksey0808.Taskmanager"
     },
     "web": {
       "bundler": "metro",
