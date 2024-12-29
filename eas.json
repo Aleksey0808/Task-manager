@@ -1,29 +1,21 @@
 {
   "cli": {
-    "version": ">= 12.6.2",
+    "version": ">= 13.3.0",
     "appVersionSource": "remote"
   },
   "build": {
-    "production": {
-      "android": {
-        "distribution": "store",
-        "autoIncrement": true,
-        "buildType": "apk"
-      },
-      "ios": {
-        "distribution": "store",
-        "autoIncrement": true
-      },
-      "channel": "production"
-    },
     "development": {
       "developmentClient": true,
-      "distribution": "internal",
-      "channel": "development"
+      "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal",
-      "channel": "preview"
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "ANDROID_SDK_ROOT": "/Users/admin/Library/Android/sdk"
+    },
+      "autoIncrement": true
     }
   },
   "submit": {

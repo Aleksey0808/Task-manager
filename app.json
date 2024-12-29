@@ -4,7 +4,7 @@
     "slug": "tracktaskflow",
     "version": "1.0.2",
     "orientation": "default",
-    "icon": "./assets/images/Logo.png",
+    "icon": "./assets/images/logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -31,14 +31,14 @@
           }
         ]
       },
-      "bundleIdentifier": "com.tracktaskflow",
+      "bundleIdentifier": "com.aleksey0808.Taskmanager",
       "associatedDomains": [
-        "applinks:tracktaskflow.onelink.me"
+        "applinks:com.aleksey0808.Taskmanager.onelink.me"
       ]
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/Logo.png",
+        "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
@@ -49,7 +49,7 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/Logo.png"
+      "favicon": "./assets/images/logo.png"
     },
     "plugins": [
       "expo-router",

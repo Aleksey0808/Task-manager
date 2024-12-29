@@ -33,7 +33,7 @@ const PreviewScreen = () => {
     colors={['#f4e7d3', '#d2b48c', '#8b4513']}
       style={styles.container}
     >
-      <Text style={styles.title}>Track Task Flow</Text>
+      <Text style={styles.title}>Контроль Потока Финансов</Text>
       <ActivityIndicator size="large" color="#ffffff" />
       <Text style={styles.loadingText}>Loading...</Text>
     </LinearGradient>
